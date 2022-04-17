@@ -3,7 +3,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const date = require(__dirname + "/date.js");
-const quotes = require(__dirname + "/quote.js");
 
 const app = express();
 
@@ -70,7 +69,6 @@ app.set('view engine', 'ejs');
 //Maybe rename to /lists/main
 app.get("/", function(req, res) {
 
-  let quote = quotes.getRandomQuote();
   let day = date.getDate();
   let timeOfDay = date.getTime();
   let time = date.getTimeString();
@@ -90,7 +88,6 @@ app.get("/", function(req, res) {
         console.log(err);
       } else {
         res.render('list', {
-          quote: quote,
           day: day,
           listTitle: "Main",
           addItems: foundItem,
@@ -105,7 +102,6 @@ app.get("/", function(req, res) {
 
 app.get("/:listName", function(req, res) {
   // let allLists = List.find({});
-  let quote = quotes.GetRandomQuote();
   let day = date.getDate();
   let timeOfDay = date.getTime();
   let time = date.getTimeString();
@@ -125,7 +121,6 @@ app.get("/:listName", function(req, res) {
         res.redirect("/" + customListName)
       } else {
         res.render('list', {
-          quote: quote,
           day: day,
           listTitle: li.name,
           addItems: li.items,
