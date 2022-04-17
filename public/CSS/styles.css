@@ -1,0 +1,92 @@
+/* Colors
+#00FFC6
+#43919B
+#30AADD
+#247881 */
+
+body {
+  background-image: -webkit-linear-gradient(#247881, #43919B);
+  min-height: 750px;
+}
+
+.listItem {
+  display: inline-flex;
+  /* text-shadow: -1.5px 1.5px #00FFC6; */
+  color: #30AADD;
+}
+
+button {
+  border-radius: 50px;
+}
+
+input:checked+p {
+  text-decoration: line-through;
+  text-decoration-color: grey;
+  color: grey;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  box-shadow: inset 0 -3px 0 0 black;
+}
+
+.userInput {
+  /* width: 20%; */
+  text-align: center;
+border-top-style: hidden;
+border-right-style: hidden;
+border-left-style: hidden;
+border-bottom-style: groove;
+background-color: #247881;
+}
+
+.niceBox{
+  width: 45%;
+  margin: 15px auto;
+  border: thin groove #00FFC6;
+}
+
+.niceText{
+  text-align: center;
+  font-size: 1rem;
+  color: #30AADD;
+}
+
+.box {
+  width: 50%;
+  margin: 15px auto;
+  border: thin groove black;
+}
+
+.item {
+  border-bottom: 1px solid black;
+  color: black;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.item: last-child {
+  border-bottom: 0;
+}
+
+.copyright {
+  text-align: center;
+}
+
+::placeholder {
+  color: blue;
+  opacity: .25;
+}
+
+input[type="checkbox"] {
+  margin: 20px;
+}
+
+#title {
+  font-size: 1rem;
+  color: #43919B;
+  font-weight: bolder;
+  text-align: center;
+}
