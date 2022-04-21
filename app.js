@@ -8,7 +8,8 @@ const app = express();
 
 
 const databasename = "todolistDB";
-const url = 'mongodb://localhost:27017/';
+//myDatabase?retryWrites=true&w=majority'
+const url = 'mongodb+srv://Jjzme2:tBYrKITMQ8RNwcjL@cluster1.t39wt.mongodb.net/';
 
 app.use(bodyParser.urlencoded({
   extended: true
@@ -175,17 +176,36 @@ app.post("/", function(req, res) {
 });
 
 app.post("/delete", function(req, res) {
-  const checkedItem = req.body.checkBox;
 
-  Item.findByIdAndRemove(checkedItem, function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log("Successfully deleted " + checkedItem);
-      res.redirect("/");
-    }
-  })
-})
+  const checkedItem = req.body.checkBox;
+  const listName = req.body.listName;
+
+  if (listName === "Main") {
+    //Default List
+    Item.findByIdAndRemove(checkedItem, function(err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Successfully deleted " + checkedItem);
+        res.redirect("/");
+      }
+    });
+  } else {
+    List.findOneAndUpdate({name: listName}, {
+      $pull: {
+        items: {
+          _id: checkedItem
+        }
+      }
+    }, function(err, foundList) {
+      if (err) {
+        console.log(err);
+      }else{
+        res.redirect("/" + listName);
+      }
+    })
+  }
+});
 
 // App.Listen
 
